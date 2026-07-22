@@ -2,6 +2,7 @@ gnode_modules/
 target/
 _out/
 gen/
+node_modules/
 
 .cdsrc-private.json
 default-*.json
