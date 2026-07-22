@@ -1,0 +1,129 @@
+get http://localhost:4004/odata/v4/sales-order-app-services/EmployeeService
+
+#####
+
+http://localhost:4004/odata/v4/sales-order-app-services/BPService?$top=5
+
+
+#####
+http://localhost:4004/odata/v4/sales-order-app-services/BPService/$count
+
+#####
+http://localhost:4004/odata/v4/sales-order-app-services/BPService?$filter=BP_ID eq '100000000'&$select=COMPANY_NAME,BP_ID
+
+
+####
+
+POST http://localhost:4004/odata/v4/sales-order-app-services/BPService
+Content-Type: application/json
+
+{
+      "BP_ID": "200005678",
+      "BP_ROLE": "1",
+      "COMPANY_NAME": "SAP",
+      "FAX": "62276288",
+      "MOBILE": "74576789",
+      "NODE_KEY": "748600000000000000000026381"
+}
+
+###
+PUT http://localhost:4004/odata/v4/sales-order-app-services/BPService/748600000000000000000026381
+Content-Type: application/json
+
+{
+      "COMPANY_NAME": "ABC"
+}
+
+###
+DELETE http://localhost:4004/odata/v4/sales-order-app-services/BPService/748600000000000000000026381
+
+
+####
+http://localhost:4004/odata/v4/sales-order-app-services/EmployeeService
+
+### Insert Employee Details
+POST http://localhost:43189/odata/v4/sales-order-app-services/EmployeeService
+Content-Type: application/json
+ 
+{
+      "ID": "02BD2137-0890-1EEA-A6C2-BB55C19788CC",
+      "ACCOUNTNUMBER": "777888999",
+      "BANKID": "510000111",
+      "BANKNAME": "My Bank of Baroda",
+      "CURRENCY_code": "USD",
+      "EMAIL": "kl.rahul@itelo.info",
+      "GENDER": "M",
+      "LANGUAGE_code": "EN",
+      "LOGINNAME": "KLRAHUL",
+      "EMPLOYEEID" : 12001,
+      "NAMEFIRST": "K L",
+      "NAMEINITIAL": null,
+      "NAMELAST": "Rahul",
+      "NAMEMIDDLE": null,
+      "PHONE": "+1 999 374 524",
+      "SALARY": "100500.00"
+}
+ 
+####
+PUT http://localhost:43189/odata/v4/sales-order-app-services/EmployeeService/02BD2137-0890-1EEA-A6C2-BB55C19788CC
+Content-Type: application/json
+
+{
+      "CURRENCY_code": "INR",
+      "SALARY": "167000.00"
+}
+ 
+###
+
+PUT http://localhost:4004/odata/v4/sales-order-app-services/AddService/74867AD200E41EDBA5D8B0688566A052
+Content-Type: application/json
+
+{
+     "Country": "IN"
+}
+
+####
+PUT http://localhost:45231/odata/v4/sales-order-app-services/EmployeeService/02BD2137-0890-1EEA-A6C2-BB55C19788CC
+Content-Type: application/json
+      
+{
+      "CURRENCY_code": "USD"
+}
+
+###
+POST http://localhost:4004/odata/v4/sales-order-app-services/CreateEmployee
+Content-Type: application/json
+
+{
+      "ID": "f4d22684-855b-11f1-a408-325096b39f47",
+      "ACCOUNTNUMBER": "777888990",
+      "BANKID": "510000111",
+      "BANKNAME": "My Bank of State Bank",
+      "CURRENCY_code": "INR",
+      "EMAIL": "manish@itelo.info",
+      "GENDER": "M",
+      "LANGUAGE_code": "EN",
+      "LOGINNAME": "ManishW",
+      "EMPLOYEEID" : "930884",
+      "NAMEFIRST": "M W",
+      "NAMEINITIAL": null,
+      "NAMELAST": "Wararkar",
+      "NAMEMIDDLE": null,
+      "PHONE": "+1 999 374 524",
+      "SALARY": "5000.00"
+}
+
+
+####
+GET http://localhost:4004/odata/v4/sales-order-app-services/salesOrderService
+
+
+####
+POST http://localhost:4004/odata/v4/sales-order-app-services/salesOrderService/74867AD200E41EDBA5D8B0C98DC32052/discountPrice
+Content-Type: application/json
+
+{}
+
+
+####
+GET http://localhost:4004/odata/v4/sales-order-app-services/gethighestSalary()

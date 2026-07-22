@@ -1,0 +1,211 @@
+{
+  "_version": "1.86.0",
+  "sap.app": {
+    "id": "manish",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.28.0",
+      "toolsId": "bca0fdbb-260e-4a56-a50e-5452b3c87d8a"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/sales-order-app-services/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "manage-display": {
+          "semanticObject": "manage",
+          "action": "display",
+          "title": "{{manage-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.150.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "manish.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "flexibleColumnLayout": {
+          "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+        },
+        "routerClass": "sap.f.routing.Router"
+      },
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "salesOrderServiceList",
+          "target": [
+            "salesOrderServiceList"
+          ]
+        },
+        {
+          "pattern": "salesOrderService({key}):?query:",
+          "name": "salesOrderServiceObjectPage",
+          "target": [
+            "salesOrderServiceList",
+            "salesOrderServiceObjectPage"
+          ]
+        },
+        {
+          "pattern": "salesOrderService({key})/Items({key2}):?query:",
+          "name": "SalesItemServiceObjectPage",
+          "target": [
+            "salesOrderServiceList",
+            "salesOrderServiceObjectPage",
+            "SalesItemServiceObjectPage"
+          ]
+        }
+      ],
+      "targets": {
+        "salesOrderServiceList": {
+          "type": "Component",
+          "id": "salesOrderServiceList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/salesOrderService",
+              "variantManagement": "Page",
+              "navigation": {
+                "salesOrderService": {
+                  "detail": {
+                    "route": "salesOrderServiceObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              },
+              "initialLoad": "Enabled"
+            }
+          },
+          "controlAggregation": "beginColumnPages",
+          "contextPattern": ""
+        },
+        "salesOrderServiceObjectPage": {
+          "type": "Component",
+          "id": "salesOrderServiceObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/salesOrderService",
+              "navigation": {
+                "Items": {
+                  "detail": {
+                    "route": "SalesItemServiceObjectPage"
+                  }
+                }
+              }
+            }
+          },
+          "controlAggregation": "midColumnPages",
+          "contextPattern": "/salesOrderService({key})"
+        },
+        "SalesItemServiceObjectPage": {
+          "type": "Component",
+          "id": "SalesItemServiceObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/salesOrderService/Items"
+            }
+          },
+          "controlAggregation": "endColumnPages",
+          "contextPattern": "/salesOrderService({key})/Items({key2})"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+      "type": "XML",
+      "async": true,
+      "id": "appRootView"
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}
