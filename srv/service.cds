@@ -5,7 +5,7 @@ using {SalesOrderApp.reuse as reuse} from '../db/reuse';
 //using { Currency } from '@sap/cds/common';
 
 
-service SalesOrderAppServices {
+service SalesOrderAppServices @(requires: 'authenticated-user' ) {
 
     entity BPService         as projection on db.masterdata.BusinessPartners;
 

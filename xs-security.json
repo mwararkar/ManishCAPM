@@ -1,68 +1,68 @@
 {
-  "xsappname": "salesorderapp",
-  "tenant-mode": "dedicated",
-  "scopes": [
-    {
-      "name": "$XSAPPNAME.Viewer",
-      "description": "Viewer Scope"
-    },
-    {
-      "name": "$XSAPPNAME.Admin",
-      "description": "Admin Scope"
-    }
-  ],
-  "attributes": [
-    {
-      "name": "country",
-      "description": "Country attribute",
-      "valueType": "string"
-    }
-  ],
-  "role-templates": [
-    {
-      "name": "Viewer",
-      "description": "Viewer Role",
-      "scope-references": [
-        "$XSAPPNAME.Viewer"
-      ],
-      "attribute-references": [
-        {
-          "name": "country"
-        }
-      ]
-    },
-    {
-      "name": "Admin",
-      "description": "Admin Role",
-      "scope-references": [
-        "$XSAPPNAME.Admin"
-      ]
-    }
-  ],
-  "role-collections": [
-    {
-      "name": "SO_VIEWER",
-      "description": "Viewer Role Collection",
-      "role-template-references": [
-        "$XSAPPNAME.Viewer"
-      ]
-    },
-    {
-      "name": "SO_ADMIN",
-      "description": "Admin Role Collection",
-      "role-template-references": [
-        "$XSAPPNAME.Admin"
-      ]
-    }
-  ],
-  "authorities": [
-    "$ACCEPT_GRANTED_AUTHORITIES"
-  ],
-  "oauth2-configuration": {
-    "token-validity": 3600,
-    "redirect-uris": [
-      "https://*.cfapps.us10.hana.ondemand.com/*"
-    ]
+ "xsappname": "salesorderapp",
+ "tenant-mode": "dedicated",
+ "scopes": [
+  {
+   "name": "$XSAPPNAME.Viewer",
+   "description": "Viewer Scope"
   },
-  "xsenbleasyncservice": "true"
+  {
+   "name": "$XSAPPNAME.Admin",
+   "description": "Admin Scope"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "country",
+   "description": "Country attribute",
+   "valueType": "string"
+  }
+ ],
+ "role-templates": [
+  {
+   "name": "Viewer",
+   "description": "Viewer Role",
+   "scope-references": [
+    "$XSAPPNAME.Viewer"
+   ],
+   "attribute-references": [
+    {
+     "name": "country"
+    }
+   ]
+  },
+  {
+   "name": "Admin",
+   "description": "Admin Role",
+   "scope-references": [
+    "$XSAPPNAME.Admin"
+   ]
+  }
+ ],
+ "role-collections": [
+  {
+   "name": "SO_VIEWER",
+   "description": "Viewer Role Collection",
+   "role-template-references": [
+    "$XSAPPNAME.Viewer"
+   ]
+  },
+  {
+   "name": "SO_ADMIN",
+   "description": "Admin Role Collection",
+   "role-template-references": [
+    "$XSAPPNAME.Admin"
+   ]
+  }
+ ],
+ "authorities": [
+  "$ACCEPT_GRANTED_AUTHORITIES"
+ ],
+ "oauth2-configuration": {
+  "token-validity": 3600,
+  "redirect-uris": [
+   "https://*.cfapps.us10.hana.ondemand.com/*"
+  ]
+ },
+ "xsenableasyncservice": "true"
 }
